@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen AI Email Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Gen AI Email Classifier</h1>
+        <form id="email-form" action="/process-emails" method="post" enctype="multipart/form-data">
+            <label for="email-file">Upload Email File:</label>
+            <input type="file" id="email-file" name="email_file" accept=".eml,.msg" required>
+            <br>
+            <label for="attachment-file">Upload Attachments:</label>
+            <input type="file" id="attachment-file" name="attachments" accept=".pdf,.jpg,.jpeg,.png" multiple>
+            <br>
+            <button type="submit">Process Emails</button>
+        </form>
+        <div id="results"></div>
+    </div>
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
