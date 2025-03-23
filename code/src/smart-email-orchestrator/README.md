@@ -56,8 +56,3 @@ gen-ai-email-classifier
    ```
 2. Open your web browser and go to `http://localhost:5000` to access the application.
 
-## Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
