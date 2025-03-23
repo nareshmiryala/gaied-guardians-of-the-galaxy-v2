@@ -1,0 +1,23 @@
+{
+    "llm_model_path": "path_to_local_LLM_model",
+    "request_types": [
+      {"request_type": "Adjustment", "sub_request_types": []},
+      {"request_type": "AU Transfer", "sub_request_types": []},
+      {"request_type": "Closing Notice", "sub_request_types": ["Reallocation Fees", "Amendment Fees", "Reallocation Principal"]},
+      {"request_type": "Fee Payment", "sub_request_types": ["Ongoing Fee", "Letter of Credit Fee"]},
+      {"request_type": "Money Movement-Inbound", "sub_request_types": ["Principal", "Interest", "Principal + Interest", "Principal+Interest+Fee"]},
+      {"request_type": "Money Movement - Outbound", "sub_request_types": ["Timebound", "Foreign Currency"]},
+      {"request_type": "Loan Servicing", "sub_request_types": ["Loan Disbursement", "Loan Closure", "Loan Restructuring"]},
+      {"request_type": "Account Management", "sub_request_types": ["Account Opening", "Account Closure", "Account Update"]},
+      {"request_type": "Dispute Resolution", "sub_request_types": ["Unauthorized Transaction", "Billing Error", "Fraudulent Activity"]},
+      {"request_type": "General Inquiry", "sub_request_types": ["Product Information", "Interest Rates", "Branch Locator"]},
+      {"request_type": "Document Submission", "sub_request_types": ["KYC Update", "Income Proof", "Collateral Documents"]},
+      {"request_type": "Loans", "sub_request_types": ["Home Loan", "Car Loan", "Personal Loan"]},
+      {"request_type": "Accounts", "sub_request_types": ["Savings", "Current"]},
+      {"request_type": "Mutual Funds", "sub_request_types": ["Equity", "Debt"]}
+    ],
+    "email_processing": {
+      "extract_fields": ["amount", "due_date", "customer_id", "account_number", "loan_number"]
+    }
+  }
+  
