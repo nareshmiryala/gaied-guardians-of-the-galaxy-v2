@@ -1,4 +1,4 @@
-# gen-ai-email-classifier
+# smart-email-orchestrator
 
 ## Overview
 The gen-ai-email-classifier is a web application designed to classify emails using artificial intelligence techniques. It extracts content from various email formats, processes the data, and classifies it based on predefined categories.
