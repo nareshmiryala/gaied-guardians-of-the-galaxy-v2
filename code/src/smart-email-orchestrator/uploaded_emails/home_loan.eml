@@ -1,0 +1,23 @@
+Subject: Home Loan Inquiry
+From: customer@bank.com
+To: customer@domain.com
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+MIME-Version: 1.0
+
+Dear Customer,
+
+Your request has been processed as follows:
+
+Request Type: Loans
+Sub-Request Type: Home Loan
+Amount: Not Found
+Due Date: Not Found
+Customer ID: 98765
+Account Number: Not Found
+Loan Number: HLOAN12345
+
+If you have any questions, please contact us.
+
+Best regards,
+Bank Support Team

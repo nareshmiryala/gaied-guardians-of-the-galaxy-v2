@@ -1,0 +1,13 @@
+[
+  {
+    "file": "home_loan.eml",
+    "subject": "Home Loan Inquiry",
+    "request_type": "Unknown",
+    "sub_request_type": "Unknown",
+    "confidence_score": 0,
+    "attachments": [],
+    "senders_intent": "Request",
+    "department": "Mortgage Lending",
+    "reasoning": "The email is classified as 'Request' because it discusses request matters."
+  }
+]
