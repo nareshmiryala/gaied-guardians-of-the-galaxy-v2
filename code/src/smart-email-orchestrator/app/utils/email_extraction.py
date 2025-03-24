@@ -6,6 +6,7 @@ from email import policy
 from email.parser import BytesParser
 from app.utils.classification import advanced_classify_email, classify_email, generate_intent_and_reasoning
 from app.models import load_config
+import hashlib
 
 CONFIG = load_config("config.json")
 
@@ -17,7 +18,11 @@ def extract_email_details(eml_file_path):
     email_data = {
         "subject": msg["subject"],
         "body": get_email_body(msg),
-        "attachments": extract_attachments(msg)
+        "sender": msg["from"],
+        "recipient": msg["to"],
+        "date": msg["date"],
+        "attachments": extract_attachments(msg),
+        "hash": generate_email_hash(msg)
     }
 
     return email_data
@@ -39,6 +44,10 @@ def extract_attachments(msg):
             if filename:
                 attachments.append(filename)
     return attachments
+
+def generate_email_hash(msg):
+    email_content = f"{msg['subject']}{msg['from']}{msg['date']}{get_email_body(msg)}"
+    return hashlib.md5(email_content.encode()).hexdigest()
 
 def extract_fields(email_body):
     """Extract predefined fields dynamically from email body using regex."""
@@ -65,11 +74,18 @@ def extract_fields(email_body):
 def process_emails(upload_folder, config):
     """Processes uploaded .eml files."""
     results = []
+    seen_hashes = set()
 
     for filename in os.listdir(upload_folder):
         if filename.endswith(".eml"):
             eml_path = os.path.join(upload_folder, filename)
             email_data = extract_email_details(eml_path)
+
+            if email_data["hash"] in seen_hashes:
+                print(f"Duplicate email detected: {filename}")
+                continue  # Skip duplicate emails
+
+            seen_hashes.add(email_data["hash"])
             classification = classify_email(email_data,upload_folder)
             #classification = advanced_classify_email(email_data)
             extracted_fields = extract_fields(email_data["body"])
@@ -80,7 +96,8 @@ def process_emails(upload_folder, config):
                "file": filename, "subject": email_data["subject"],
                 "request_type": classification["request_type"], "sub_request_type": classification["sub_request_type"],
                 "confidence_score": classification["confidence_score"], "attachments": email_data["attachments"],
-                "senders_intent": sender_intent, "department": classification["department"],"reasoning": reasoning
+                "senders_intent": sender_intent, "department": classification["department"],"reasoning": reasoning,
+                **extracted_fields
             }
 
             results.append(result)
